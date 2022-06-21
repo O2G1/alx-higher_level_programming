@@ -1,13 +1,13 @@
 #!/usr/bin/python3
-
-
 def safe_print_list(my_list=[], x=0):
-    p = 0
-    for i in range(0, x):
-        try:
-            print("{}".format(my_list[i]), end="")
-            p += 1
-        except:
-            pass
-    print()
-    return p
+    try:
+        count = 0
+        while count < x:
+            print("{}".format(my_list[count]), end='')
+            count += 1
+        print()
+        return count
+    except IndexError:
+        print()
+        return count
+        pass
