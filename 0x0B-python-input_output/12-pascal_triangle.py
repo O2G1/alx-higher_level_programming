@@ -1,25 +1,25 @@
 #!/usr/bin/python3
-"""
-    6-from_json_string.py
-    Function that writes an Object to \
-    a text file, using a JSON representation.
+""" File name : 14-pascal_triangle.py
 """
 
 
-class Student:
+def pascal_triangle(n):
+    """pascal_triangle
+    Args:
+        n (int): number
+    Returns:
+        [list]: list of lists of integers representing
+        the Pascal’s triangle of n
+    """
+    if n <= 0:
+        return ""
 
-    def __init__(self, first_name, last_name, age):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.age = age
-
-    def to_json(self, attrs=None):
-        """Function that writes an Object to \
-        a text file, using a JSON representation."""
-        attrib = {}
-        if attrs is not None and all(isinstance(keyy, str) for keyy in attrs):
-            for i, j in self.__dict__.items():
-                if i in attrs:
-                    attrib[i] = j
-            return attrib
-        return self.__dict__
+    triangle = [[1]]
+    for cur_row in range(1, n):
+        row = [1]
+        prev_row = triangle[cur_row - 1]
+        for elem in range(1, cur_row):
+            row.append(prev_row[elem] + prev_row[elem - 1])
+        row.append(1)
+        triangle.append(row)
+    return (triangle)
